@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 export default function SizeDropdown({ size, setSize }) {
-    // Pre-set values for dropdown, currently set for dispaying rows of three
+    // Pre-set values for dropdown, currently set for displaying rows of three
     const options = [9, 24, 48, 99];
 
     return (
@@ -17,10 +17,10 @@ export default function SizeDropdown({ size, setSize }) {
                 <div className="py-1">
                     {options.map((option) => (
                         <MenuItem key={option}>
-                            {({ active }) => (
+                            {({ focus }) => (
                                 <button
                                     onClick={() => setSize(option)}
-                                    className={`block w-full text-left px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                                    className={`block w-full text-left px-4 py-2 text-sm ${focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                                         }`}
                                 >
                                     {option}

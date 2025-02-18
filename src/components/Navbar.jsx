@@ -63,30 +63,30 @@ export default function Navbar() {
                             </div>
                             <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
                                 <MenuItem>
-                                    {({ active }) => (
+                                    {({ focus }) => (
                                         <NavLink
                                             to="/profile"
-                                            className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-700' : 'text-gray-700'}`}
+                                            className={`block px-4 py-2 text-sm ${focus ? 'bg-gray-100 text-gray-700' : 'text-gray-700'}`}
                                         >
                                             Your Profile
                                         </NavLink>
                                     )}
                                 </MenuItem>
                                 <MenuItem>
-                                    {({ active }) => (
+                                    {({ focus }) => (
                                         <NavLink
                                             to="/settings"
-                                            className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-700' : 'text-gray-700'}`}
+                                            className={`block px-4 py-2 text-sm ${focus ? 'bg-gray-100 text-gray-700' : 'text-gray-700'}`}
                                         >
                                             Settings
                                         </NavLink>
                                     )}
                                 </MenuItem>
                                 <MenuItem>
-                                    {({ active }) => (
+                                    {({ focus }) => (
                                         <button
                                             onClick={() => logout()}
-                                            className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100' : 'text-gray-700'}`}
+                                            className={`block px-4 py-2 text-sm ${focus ? 'bg-gray-100' : 'text-gray-700'}`}
                                         >
                                             Sign out
                                         </button>
@@ -155,7 +155,10 @@ export default function Navbar() {
                             <div className="text-base font-medium text-gray-800">Tom Cook</div>
                             <div className="text-sm font-medium text-gray-500">tom@example.com</div>
                         </div>
-                        <button type="button" className="ml-auto rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <button
+                            type="button"
+                            className="ml-auto rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
                             <span className="sr-only">View notifications</span>
                             <BellIcon className="w-6 h-6" aria-hidden="true" />
                         </button>

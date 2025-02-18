@@ -56,11 +56,11 @@ function SortDropdown({ sortOption, setSortOption }) {
             <MenuItems className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                 {sortOptions.map((option) => (
                     <MenuItem key={option.value}>
-                        {({ active }) => (
+                        {({ focus }) => (
                             <button
                                 onClick={() => setSortOption(option.value)}
                                 className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                    focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                     'block w-full text-left px-4 py-2 text-sm'
                                 )}
                             >
