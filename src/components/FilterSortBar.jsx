@@ -26,7 +26,23 @@ const sortOptions = [
     { value: 'age:desc', label: 'Age Desc' },
 ];
 
-
+function ZipCodeInput({ zipCode, setZipCode }) {
+    return (
+        <div className="flex items-center">
+            <label htmlFor="zipcode" className="mr-2 text-sm font-medium text-gray-900">
+                Zip Code:
+            </label>
+            <input
+                id="zipcode"
+                type="text"
+                value={zipCode}
+                onChange={(e) => setZipCode(e.target.value)}
+                placeholder="e.g., 90210"
+                className="rounded-md border border-gray-300 px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+            />
+        </div>
+    );
+}
 
 function SortDropdown({ sortOption, setSortOption }) {
     return (
