@@ -13,6 +13,7 @@ import {
     AdjustmentsHorizontalIcon,
 } from '@heroicons/react/20/solid';
 import { breedList } from './BreedList';
+import AgeRangeDropdown from './AgeDropdowns';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -133,6 +134,10 @@ export default function FilterSortBar({
     setSortOption,
     zipCode,
     setZipCode,
+    minAge,
+    setMinAge,
+    maxAge,
+    setMaxAge,
 }) {
     return (
         <div className="bg-white shadow border-b rounded-3xl border-gray-200 mb-4">
@@ -141,6 +146,7 @@ export default function FilterSortBar({
             </div>
             <div className="px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <ZipCodeInput zipCode={zipCode} setZipCode={setZipCode} />
+                <AgeRangeDropdown minAge={minAge} setMinAge={setMinAge} maxAge={maxAge} setMaxAge={setMaxAge} />
                 <SortDropdown sortOption={sortOption} setSortOption={setSortOption} />
             </div>
             <BreedFilterDisclosure selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} />

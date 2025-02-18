@@ -14,40 +14,50 @@ export default function HomePage() {
     const [prevPageQuery, setPrevPageQuery] = useState(null);
     const [curPageQuery, setCurPageQuery] = useState("/dogs/search?sort=breed:asc&size=9"); // Default query with sort and size
 
-    // States for filters, sort option, and number of results(size)
+    // Filter states
     const [selectedBreeds, setSelectedBreeds] = useState([]);
     const [sortOption, setSortOption] = useState("breed:asc");
     const [size, setSize] = useState(9);
+    const [minAge, setMinAge] = useState(0);
+    const [maxAge, setMaxAge] = useState(14);
+    const [zipCode, setZipCode] = useState("");
 
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    // Update query when filters, sort option, or size change
+    // Rebuild the query string every time a filter value changes
     useEffect(() => {
         const params = new URLSearchParams();
-        selectedBreeds.forEach(breed => params.append("breeds", breed));
+        selectedBreeds.forEach((breed) => params.append("breeds", breed));
         params.set("sort", sortOption);
         params.set("size", size);
+        params.set("ageMin", minAge);
+        params.set("ageMax", maxAge);
+        // Only include the zip code if it's either empty (no filter) or a full zipcode (exactly 5)
+        if (zipCode.trim() !== "" && zipCode.trim().length === 5) {
+            params.append("zipCodes", zipCode);
+        }
         setCurPageQuery(`/dogs/search?${params.toString()}`);
         setCurrentPage(1);
-    }, [selectedBreeds, sortOption, size]);
+    }, [selectedBreeds, sortOption, size, minAge, maxAge, zipCode]);
 
-
-    // Fetch dog data on query change
+    // Fetch dog data when the query changes
     useEffect(() => {
-        // First fetch IDs, then dog details
         async function fetchDogData() {
             setIsLoading(true);
             setError(null);
             try {
-                const idResponse = await fetch(`${BASE_URL}${curPageQuery}`, { credentials: "include" });
+                const idResponse = await fetch(`${BASE_URL}${curPageQuery}`, {
+                    credentials: "include",
+                });
                 if (idResponse.status === 401) {
                     navigate("/login");
                     return;
                 }
-                if (!idResponse.ok) throw new Error(`ID fetch failed: ${idResponse.status}`);
+                if (!idResponse.ok)
+                    throw new Error(`ID fetch failed: ${idResponse.status}`);
                 const idJson = await idResponse.json();
                 setNextPageQuery(idJson.next || null);
                 setPrevPageQuery(idJson.prev || null);
@@ -61,7 +71,8 @@ export default function HomePage() {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(idJson.resultIds),
                     });
-                    if (!dataResponse.ok) throw new Error(`Data fetch failed: ${dataResponse.status}`);
+                    if (!dataResponse.ok)
+                        throw new Error(`Data fetch failed: ${dataResponse.status}`);
                     const dataJson = await dataResponse.json();
                     setDogData(dataJson);
                 }
@@ -78,7 +89,6 @@ export default function HomePage() {
     return (
         <div className="bg-gradient-to-l from-blue-200 to-gray-100 pt-44 pb-10">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
                 <div className="flex flex-col lg:flex-row items-center justify-between pb-10">
                     <div className="flex-grow">
                         <h1 className="text-6xl font-semibold tracking-tight text-pretty text-gray-900">
@@ -99,13 +109,17 @@ export default function HomePage() {
                         setSelectedBreeds={setSelectedBreeds}
                         sortOption={sortOption}
                         setSortOption={setSortOption}
+                        zipCode={zipCode}
+                        setZipCode={setZipCode}
+                        minAge={minAge}
+                        setMinAge={setMinAge}
+                        maxAge={maxAge}
+                        setMaxAge={setMaxAge}
                     />
                 </div>
 
                 {error && (
-                    <div className="text-red-600 text-center mb-4">
-                        {error}
-                    </div>
+                    <div className="text-red-600 text-center mb-4">{error}</div>
                 )}
 
                 {isLoading ? (
