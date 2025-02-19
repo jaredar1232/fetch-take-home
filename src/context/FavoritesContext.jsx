@@ -1,9 +1,18 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const FavoritesContext = createContext()
 
 export function FavoritesProvider({ children }) {
-    const [favorites, setFavorites] = useState([])
+    // Initialize favorites from local if available
+    const [favorites, setFavorites] = useState(() => {
+        const storedFavorites = localStorage.getItem('favorites')
+        return storedFavorites ? JSON.parse(storedFavorites) : []
+    })
+
+    // Persist favorites on change
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+    }, [favorites])
 
     const addFavorite = (dog) => {
         // Prevent duplicates
