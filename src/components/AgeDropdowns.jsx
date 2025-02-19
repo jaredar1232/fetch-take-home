@@ -1,7 +1,7 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const ageOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+const ageOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 function AgeDropdown({ value, setValue }) {
     return (
@@ -15,15 +15,18 @@ function AgeDropdown({ value, setValue }) {
                     />
                 </MenuButton>
             </div>
-            <MenuItems className="absolute right-0 z-10 mt-2 w-20 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+            <MenuItems className="absolute right-0 z-10 mt-2 w-20 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-none">
                 <div className="py-1">
                     {ageOptions.map((option) => (
                         <MenuItem key={option}>
                             {({ focus }) => (
                                 <button
                                     onClick={() => setValue(option)}
-                                    className={`block w-full text-left px-4 py-2 text-sm ${focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
-                                        }`}
+                                    className={`block w-full px-4 py-2 text-left text-sm ${
+                                        focus
+                                            ? 'bg-gray-100 text-gray-900'
+                                            : 'text-gray-700'
+                                    }`}
                                 >
                                     {option}
                                 </button>
@@ -33,13 +36,18 @@ function AgeDropdown({ value, setValue }) {
                 </div>
             </MenuItems>
         </Menu>
-    );
+    )
 }
 
-export default function AgeRangeDropdown({ minAge, setMinAge, maxAge, setMaxAge }) {
+export default function AgeRangeDropdown({
+    minAge,
+    setMinAge,
+    maxAge,
+    setMaxAge,
+}) {
     return (
         <div className="flex flex-col items-center">
-            <label className="block text-sm font-medium text-gray-700 mb-1 text-center">
+            <label className="mb-1 block text-center text-sm font-medium text-gray-700">
                 Age Range
             </label>
             <div className="flex space-x-2">
@@ -47,5 +55,5 @@ export default function AgeRangeDropdown({ minAge, setMinAge, maxAge, setMaxAge 
                 <AgeDropdown value={maxAge} setValue={setMaxAge} />
             </div>
         </div>
-    );
+    )
 }

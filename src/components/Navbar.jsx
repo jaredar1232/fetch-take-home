@@ -1,42 +1,65 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import {
+    Disclosure,
+    DisclosureButton,
+    DisclosurePanel,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+} from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
-import DogLogo from "../assets/dog.svg"
-import { useAuth } from "../context/AuthContext";
-import ProfilePic from "../assets/pfp.jpg";
+import DogLogo from '../assets/dog.svg'
+import { useAuth } from '../context/AuthContext'
+import ProfilePic from '../assets/pfp.jpg'
 
 export default function Navbar() {
-    const { logout } = useAuth();
-    const activeClass = "inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900";
-    const inactiveClass = "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700";
+    const { logout } = useAuth()
+    const activeClass =
+        'inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'
+    const inactiveClass =
+        'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
 
     return (
-        <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50 bg-white p-4 sm:bg-transparent">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 rounded-3xl bg-white shadow-md">
+        <Disclosure
+            as="nav"
+            className="fixed top-0 right-0 left-0 z-50 bg-white p-4 sm:bg-transparent"
+        >
+            <div className="mx-auto max-w-7xl rounded-3xl bg-white px-4 shadow-md sm:px-6 lg:px-8">
                 <div className="flex h-16 justify-between">
                     <div className="flex">
-                        <div className="hidden sm:flex shrink-0 items-center">
+                        <div className="hidden shrink-0 items-center sm:flex">
                             <NavLink to="/">
-                                <img alt="Your Company" src={DogLogo} className="h-8 w-auto" />
+                                <img
+                                    alt="Your Company"
+                                    src={DogLogo}
+                                    className="h-8 w-auto"
+                                />
                             </NavLink>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             <NavLink
                                 to="/"
                                 end
-                                className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
+                                className={({ isActive }) =>
+                                    isActive ? activeClass : inactiveClass
+                                }
                             >
                                 Explore Dogs
                             </NavLink>
                             <NavLink
                                 to="/favorites"
-                                className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
+                                className={({ isActive }) =>
+                                    isActive ? activeClass : inactiveClass
+                                }
                             >
                                 Favorites
                             </NavLink>
                             <NavLink
                                 to="/get-a-match"
-                                className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
+                                className={({ isActive }) =>
+                                    isActive ? activeClass : inactiveClass
+                                }
                             >
                                 Get A Match
                             </NavLink>
@@ -48,20 +71,22 @@ export default function Navbar() {
                             className="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             <span className="sr-only">View notifications</span>
-                            <BellIcon aria-hidden="true" className="w-6 h-6" />
+                            <BellIcon aria-hidden="true" className="h-6 w-6" />
                         </button>
                         <Menu as="div" className="relative ml-3">
                             <div>
                                 <MenuButton className="flex rounded-full bg-white text-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                    <span className="sr-only">Open user menu</span>
+                                    <span className="sr-only">
+                                        Open user menu
+                                    </span>
                                     <img
                                         alt="User profile"
                                         src={ProfilePic}
-                                        className="w-8 h-8 rounded-full"
+                                        className="h-8 w-8 rounded-full"
                                     />
                                 </MenuButton>
                             </div>
-                            <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
+                            <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-none">
                                 <MenuItem>
                                     {({ focus }) => (
                                         <NavLink
@@ -86,7 +111,7 @@ export default function Navbar() {
                                     {({ focus }) => (
                                         <button
                                             onClick={() => logout()}
-                                            className={`block px-4 py-2 text-sm ${focus ? 'bg-gray-100' : 'text-gray-700'}`}
+                                            className={`block w-full px-4 py-2 text-left text-sm ${focus ? 'bg-gray-100' : 'text-gray-700'}`}
                                         >
                                             Sign out
                                         </button>
@@ -98,8 +123,14 @@ export default function Navbar() {
                     <div className="-mr-2 flex items-center sm:hidden">
                         <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:ring-inset">
                             <span className="sr-only">Open main menu</span>
-                            <Bars3Icon aria-hidden="true" className="block w-6 h-6 group-data-open:hidden" />
-                            <XMarkIcon aria-hidden="true" className="hidden w-6 h-6 group-data-open:block" />
+                            <Bars3Icon
+                                aria-hidden="true"
+                                className="block h-6 w-6 group-data-open:hidden"
+                            />
+                            <XMarkIcon
+                                aria-hidden="true"
+                                className="hidden h-6 w-6 group-data-open:block"
+                            />
                         </DisclosureButton>
                     </div>
                 </div>
@@ -113,8 +144,8 @@ export default function Navbar() {
                         end
                         className={({ isActive }) =>
                             isActive
-                                ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
-                                : "block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                                ? 'block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700'
+                                : 'block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
                         }
                     >
                         Explore Dogs
@@ -124,8 +155,8 @@ export default function Navbar() {
                         to="/favorites"
                         className={({ isActive }) =>
                             isActive
-                                ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
-                                : "block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                                ? 'block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700'
+                                : 'block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
                         }
                     >
                         Favorites
@@ -135,8 +166,8 @@ export default function Navbar() {
                         to="/get-a-match"
                         className={({ isActive }) =>
                             isActive
-                                ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
-                                : "block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                                ? 'block border-l-4 border-indigo-500 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700'
+                                : 'block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
                         }
                     >
                         Get A Match
@@ -148,19 +179,23 @@ export default function Navbar() {
                             <img
                                 alt="User profile"
                                 src={ProfilePic}
-                                className="w-10 h-10 rounded-full"
+                                className="h-10 w-10 rounded-full"
                             />
                         </div>
                         <div className="ml-3">
-                            <div className="text-base font-medium text-gray-800">Tom Cook</div>
-                            <div className="text-sm font-medium text-gray-500">tom@example.com</div>
+                            <div className="text-base font-medium text-gray-800">
+                                Tom Cook
+                            </div>
+                            <div className="text-sm font-medium text-gray-500">
+                                tom@example.com
+                            </div>
                         </div>
                         <button
                             type="button"
                             className="ml-auto rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             <span className="sr-only">View notifications</span>
-                            <BellIcon className="w-6 h-6" aria-hidden="true" />
+                            <BellIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
                     </div>
                     <div className="mt-3 space-y-1">
@@ -169,8 +204,8 @@ export default function Navbar() {
                             to="/profile"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "block px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-50"
-                                    : "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                                    ? 'block bg-indigo-50 px-4 py-2 text-base font-medium text-indigo-700'
+                                    : 'block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                             }
                         >
                             Your Profile
@@ -180,8 +215,8 @@ export default function Navbar() {
                             to="/settings"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "block px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-50"
-                                    : "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                                    ? 'block bg-indigo-50 px-4 py-2 text-base font-medium text-indigo-700'
+                                    : 'block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                             }
                         >
                             Settings
@@ -191,8 +226,8 @@ export default function Navbar() {
                             to="/signout"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "block px-4 py-2 text-base font-medium text-indigo-700 bg-indigo-50"
-                                    : "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                                    ? 'block bg-indigo-50 px-4 py-2 text-base font-medium text-indigo-700'
+                                    : 'block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                             }
                         >
                             Sign out
@@ -201,5 +236,5 @@ export default function Navbar() {
                 </div>
             </DisclosurePanel>
         </Disclosure>
-    );
+    )
 }

@@ -1,6 +1,6 @@
 export default function LoadingPawPrints() {
     return (
-        <div className="relative w-full h-64 flex items-center justify-center">
+        <div className="relative flex h-64 w-full items-center justify-center">
             <div className="paw-print-1">
                 <div className="pad large"></div>
                 <div className="pad small-1"></div>
@@ -51,5 +51,5 @@ export default function LoadingPawPrints() {
                 <div className="pad small-4"></div>
             </div>
         </div>
-    );
+    )
 }

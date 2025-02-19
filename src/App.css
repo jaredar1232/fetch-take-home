@@ -49,7 +49,8 @@
     top: 300px;
     transform: rotate(-40deg);
     -webkit-animation: walk 3s linear infinite;
-    animation: /*keyframe*/ walk /*duration*/ 3s /*transition*/ linear /*repeat*/ infinite;
+    animation: /*keyframe*/ walk /*duration*/ 3s /*transition*/ linear
+        /*repeat*/ infinite;
 }
 .paw-print-2 {
     opacity: 0;

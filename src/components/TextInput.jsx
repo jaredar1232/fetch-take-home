@@ -1,18 +1,18 @@
-export default function TextInput({
-    field = 'email',
-    ...props
-}) {
+export default function TextInput({ field = 'email', ...props }) {
     // Capitalize label
-    const label = field.charAt(0).toUpperCase() + field.slice(1);
+    const label = field.charAt(0).toUpperCase() + field.slice(1)
     // Use email type if field is email, otherwise text
-    const inputType = field === 'email' ? 'email' : 'text';
+    const inputType = field === 'email' ? 'email' : 'text'
     // Set a default placeholder based on field
-    const placeholder = field === 'email' ? 'truthless1@example.com' : 'Szeth';
-    const id = field;
+    const placeholder = field === 'email' ? 'truthless1@example.com' : 'Szeth'
+    const id = field
 
     return (
         <div>
-            <label htmlFor={id} className="block text-sm/6 font-medium text-gray-900">
+            <label
+                htmlFor={id}
+                className="block text-sm/6 font-medium text-gray-900"
+            >
                 {label}
             </label>
             <div className="mt-2">

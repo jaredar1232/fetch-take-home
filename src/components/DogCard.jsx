@@ -1,4 +1,4 @@
-import { useFavorites } from '../context/FavoritesContext';
+import { useFavorites } from '../context/FavoritesContext'
 
 function FavoriteIcon({ isFavorited, onClick }) {
     return (
@@ -10,7 +10,7 @@ function FavoriteIcon({ isFavorited, onClick }) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="red"
-                    className="w-6 h-6"
+                    className="h-6 w-6"
                 >
                     <path
                         strokeLinecap="round"
@@ -25,7 +25,7 @@ function FavoriteIcon({ isFavorited, onClick }) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="h-6 w-6"
                 >
                     <path
                         strokeLinecap="round"
@@ -35,55 +35,63 @@ function FavoriteIcon({ isFavorited, onClick }) {
                 </svg>
             )}
         </button>
-    );
+    )
 }
 
 function InfoPill({ label, value }) {
     return (
-        <li className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700">
+        <li className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
             {label}: {value}
         </li>
-    );
+    )
 }
 
 export default function DogCard({ dog }) {
-    const { favorites, addFavorite, removeFavorite } = useFavorites();
+    const { favorites, addFavorite, removeFavorite } = useFavorites()
 
-    if (!dog) return null;
-    const isFavorited = favorites.some((fav) => fav.id === dog.id);
+    if (!dog) return null
+    const isFavorited = favorites.some((fav) => fav.id === dog.id)
 
     const toggleFavorite = () => {
         try {
             if (isFavorited) {
-                removeFavorite(dog.id);
+                removeFavorite(dog.id)
             } else {
-                addFavorite(dog);
+                addFavorite(dog)
             }
         } catch (error) {
-            console.error('Failed to toggle favorite:', error);
+            console.error('Failed to toggle favorite:', error)
         }
-    };
+    }
 
     return (
-        <li key={dog.id} className="overflow-hidden rounded-3xl bg-white shadow-sm list-none mb-4">
+        <li
+            key={dog.id}
+            className="mb-4 list-none overflow-hidden rounded-3xl bg-white shadow-sm"
+        >
             <div className="px-4 py-5 sm:p-6">
                 <img
                     alt={dog.name || 'Dog image'}
                     src={dog.img || '/fallback-image.jpg'}
                     className="aspect-[3/2] w-full rounded-2xl object-cover"
                 />
-                <div className="mt-4 inline-block bg-purple-100 px-3 py-1 rounded-full">
-                    <h3 className="text-lg font-semibold tracking-tight text-gray-900">{dog.name}</h3>
+                <div className="mt-4 inline-block rounded-full bg-purple-100 px-3 py-1">
+                    <h3 className="text-lg font-semibold tracking-tight text-gray-900">
+                        {dog.name}
+                    </h3>
                 </div>
                 <ul role="list" className="mt-6 flex flex-wrap gap-2">
                     <InfoPill label="Breed" value={dog.breed} />
                     <InfoPill label="Age" value={dog.age} />
                     <InfoPill label="Zip Code" value={dog.zip_code} />
                     <li>
-                        <FavoriteIcon isFavorited={isFavorited} onClick={toggleFavorite} />
+                        <FavoriteIcon
+                            isFavorited={isFavorited}
+                            onClick={toggleFavorite}
+                        />
                     </li>
                 </ul>
             </div>
         </li>
-    );
+    )
 }
