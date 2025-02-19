@@ -82,7 +82,7 @@ export default function Navbar() {
                                     <img
                                         alt="User profile"
                                         src={ProfilePic}
-                                        className="h-8 w-8 rounded-full"
+                                        className="h-8 w-8 rounded-full cursor-pointer"
                                     />
                                 </MenuButton>
                             </div>
