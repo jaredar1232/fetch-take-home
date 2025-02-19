@@ -34,7 +34,9 @@ Navbar Outlet Footer
 </pre>
 
 routes>index.jsx is the setup for routing that is injecting/wrapping main & App
+
 AuthContext.jsx is used to login, logout, and check for login cookie on all pages
+
 FavoritesContext.jsx is used to transfer the favorited dogs amongst pages
 
 ## Common Issues
