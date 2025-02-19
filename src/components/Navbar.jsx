@@ -111,7 +111,7 @@ export default function Navbar() {
                                     {({ focus }) => (
                                         <button
                                             onClick={() => logout()}
-                                            className={`block w-full px-4 py-2 text-left text-sm ${focus ? 'bg-gray-100' : 'text-gray-700'}`}
+                                            className={`block w-full cursor-pointer px-4 py-2 text-left text-sm ${focus ? 'bg-gray-100' : 'text-gray-700'}`}
                                         >
                                             Sign out
                                         </button>
