@@ -46,5 +46,5 @@ This is due to the login using an http cookie, in safari disable "Prevent cross-
 
 ### Licensing
 
-I used tailwind UI for this. I have a license under my name to build and sell. This is not intended for redistorbution. Please see this link for furthur licensing information:
+I used tailwind UI for this. I have a license under my name to build with it. This is not intended for redistribution. Please see this link for furthur licensing information:
 https://tailwindui.com/license
